@@ -157,3 +157,8 @@ instances and we append them to the request:
 
 	request.append((string) fieldname, (File) file);
 
+
+Screenshots
+-----------
+
+![Screenshot 1](https://github.com/arian/mootools-form-upload/raw/master/screenshot.png)
