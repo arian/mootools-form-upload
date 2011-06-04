@@ -4,6 +4,7 @@
 name: Form.MultipleFileInput
 description: Create a list of files that has to be uploaded
 license: MIT-style license.
+authors: Arian Stolwijk
 requires: [Element.Event, Class, Options, Events]
 provides: Form.MultipleFileInput
 

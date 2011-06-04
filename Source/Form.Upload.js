@@ -4,6 +4,7 @@
 name: Form.Upload
 description: Create a multiple file upload form
 license: MIT-style license.
+authors: Arian Stolwijk
 requires: [Form.MultipleFileInput, Request.File]
 provides: Form.Upload
 

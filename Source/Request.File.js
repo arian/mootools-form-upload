@@ -4,6 +4,7 @@
 name: Request.File
 description: Uploading files with FormData
 license: MIT-style license.
+authors: [Arian Stolwijk, Djamil Legato]
 requires: [Request]
 provides: Request.File
 credits: https://gist.github.com/a77b537e729aff97429c
