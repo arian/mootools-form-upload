@@ -1,0 +1,111 @@
+
+/* some general styles */
+
+body {
+	font: 0.9em 'Ubuntu', arial, sans-serif;
+}
+
+#wrapper {
+	margin: 100px auto;
+	width: 50%;
+}
+
+fieldset {
+	border: 0;
+}
+
+form {
+	border-top: 1px #545a74 solid;
+	border-bottom: 1px #545a74 solid;
+	background: #e2e5f3;
+	margin: 20px 0;
+	padding: 10px;
+}
+
+fieldset legend {
+	color: #666;
+	margin: 0;
+	font-size: 1.5em;
+	font-weight: normal;
+	padding-bottom: 20px;
+}
+
+.formRow {
+	overflow: auto;
+	border-bottom: 1px #bcbcbc solid;
+	padding: 5px 0;
+	max-width: 100%;
+}
+
+.formRow label {
+	padding: 4px;
+	margin: 0 3px 0 0;
+	border-right: 1px #bcbcbc solid;
+}
+
+
+/* Drag & Drop file uploading */
+
+.droppable {
+	border: #121a3f 1px solid;
+	border-radius: 3px;
+	background: #545A74;
+	color: white;
+	padding: 20px;
+	margin: 10px;
+	clear: both;
+	text-align: center;
+}
+
+.droppable.hover {
+	background: #121a3f;
+}
+
+.uploadList {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.uploadItem {
+	overflow: hidden;
+	border-bottom: #BCBCBC 1px solid;
+	margin: 0 20px;
+	padding: 3px;
+}
+
+.uploadItem span {
+	overflow: hidden;
+	width: 150px;
+	float: left;
+	display: block;
+}
+
+a.addInputRow,
+a.delInputRow,
+.uploadItem a {
+	display: inline-block;
+	background: url(add.png) no-repeat;
+	height: 16px;
+	width: 16px;
+	text-indent: -999px;
+}
+
+.uploadItem a {
+	float: left;
+	display: block;
+	padding-left: 20px;
+	background-image: url(delete.png);
+}
+
+a.delInputRow {
+	background-image: url(delete.png);
+}
+
+.progress {
+	margin: 5px 0;
+	height: 15px;
+	border-radius: 3px;
+	background: #545A74;
+}
+
