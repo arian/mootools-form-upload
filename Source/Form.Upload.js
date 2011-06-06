@@ -87,12 +87,15 @@ Form.Upload = new Class({
 	legacyUpload: function(input){
 
 		var row = input.getParent('.formRow');
-			rowClone = row.clone(),
+			rowClone = row.clone(true, true),
 			add = function(event){
 				event.preventDefault();
-				var newRow = rowClone.clone();
 
-				newRow.getElement('input').grab(new Element('a.delInputRow', {
+				var newRow = rowClone.clone(true, true),
+					inputID = String.uniqueID(),
+					label = newRow.getElement('label');
+
+				newRow.getElement('input').set('id', inputID).grab(new Element('a.delInputRow', {
 					text: 'x',
 					events: {click: function(event){
 						event.preventDefault();
@@ -100,6 +103,7 @@ Form.Upload = new Class({
 					}}
 				}), 'after');
 
+				if (label) label.set('for', inputID);
 				newRow.inject(row, 'after');
 			};
 
