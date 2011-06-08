@@ -37,6 +37,10 @@ Request.File = new Class({
 		return this.formData;
 	},
 
+	reset: function(){
+		this.formData = new FormData();
+	},
+
 	send: function(options){
 		if (!this.check(options)) return this;
 

@@ -69,7 +69,7 @@ Form.Upload = new Class({
 				onComplete: function(){
 					progress.setStyle('width', '100%');
 					self.fireEvent('complete', arguments);
-					this.formData = new FormData();
+					this.reset();
 				}
 			}),
 
