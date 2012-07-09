@@ -11,7 +11,6 @@ provides: Form.MultipleFileInput
 ...
 */
 
-
 Object.append(Element.NativeEvents, {
 	dragenter: 2, dragleave: 2, dragover: 2, dragend: 2, drop: 2
 });

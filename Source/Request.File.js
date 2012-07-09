@@ -14,7 +14,7 @@ credits: https://gist.github.com/a77b537e729aff97429c
 
 (function(){
 
-var progressSupport = ('onprogress' in new Browser.Request);
+var progressSupport = ('onprogress' in new Browser.Request());
 
 Request.File = new Class({
 
