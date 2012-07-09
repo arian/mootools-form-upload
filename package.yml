@@ -1,6 +1,6 @@
 name: Form.Upload
 author: astolwijk
-current: 0.2
+current: 0.3
 category: utilities
 tags: [upload, html5, file, "drag and drop"]
 license: MIT
