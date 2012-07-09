@@ -46,8 +46,9 @@ Form.MultipleFileInput = new Class({
 		input.set('multiple', true);
 
 		this.inputEvents = {
-			change: function(){
+			change: function(event){
 				Array.each(input.files, this.add, this);
+				this.fireEvent('change', event);
 			}.bind(this)
 		};
 

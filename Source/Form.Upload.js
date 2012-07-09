@@ -58,17 +58,6 @@ Form.Upload = new Class({
 		var progress = new Element('div.progress')
 			.setStyle('display', 'none').inject(list, 'after');
 
-		var  inputFiles = new Form.MultipleFileInput(input, list, drop, {
-			onDragenter: drop.addClass.pass('hover', drop),
-			onDragleave: drop.removeClass.pass('hover', drop),
-			onDrop: function(){
-				drop.removeClass.pass('hover', drop);
-				if (self.options.fireAtOnce){
-					form.fireEvent("submit");
-				}
-			}
-		});
-
 		var uploadReq = new Request.File({
 			url: form.get('action'),
 			onRequest: progress.setStyles.pass({display: 'block', width: 0}, progress),
@@ -85,12 +74,25 @@ Form.Upload = new Class({
 
 		var inputname = input.get('name');
 
+		var  inputFiles = new Form.MultipleFileInput(input, list, drop, {
+			onDragenter: drop.addClass.pass('hover', drop),
+			onDragleave: drop.removeClass.pass('hover', drop),
+			onDrop: function(){
+				drop.removeClass.pass('hover', drop);
+				if (self.options.fireAtOnce){
+					self.submit(inputFiles, inputname, uploadReq);
+				}
+			},
+			onChange: function(){
+				if (self.options.fireAtOnce){
+					self.submit(inputFiles, inputname, uploadReq);
+				}
+			}
+		});
+
 		form.addEvent('submit', function(event){
 			if (event) event.preventDefault();
-			inputFiles.getFiles().each(function(file){
-				uploadReq.append(inputname , file);
-			});
-			uploadReq.send();
+			self.submit(inputFiles, inputname, uploadReq);
 		});
 
 		self.reset = function() {
@@ -99,6 +101,13 @@ Form.Upload = new Class({
 				inputFiles.remove(files[i]);
 			}
 		};
+	},
+
+	submit: function(inputFiles, inputname, uploadReq){
+		inputFiles.getFiles().each(function(file){
+			uploadReq.append(inputname , file);
+		});
+		uploadReq.send();
 	},
 
 	legacyUpload: function(input){
