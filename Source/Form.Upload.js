@@ -19,6 +19,7 @@ Form.Upload = new Class({
 
 	options: {
 		dropMsg: 'Please drop your files here',
+        fireAtOnce: false,
 		onComplete: function(){
 			// reload
 			window.location.href = window.location.href;
@@ -56,7 +57,11 @@ Form.Upload = new Class({
 			inputFiles = new Form.MultipleFileInput(input, list, drop, {
 				onDragenter: drop.addClass.pass('hover', drop),
 				onDragleave: drop.removeClass.pass('hover', drop),
-				onDrop: drop.removeClass.pass('hover', drop)
+				onDrop: function() {
+                    drop.removeClass.pass('hover', drop);
+                    if (self.options.fireAtOnce)
+                        form.fireEvent("submit");
+                }
 			}),
 
 			uploadReq = new Request.File({
@@ -76,16 +81,25 @@ Form.Upload = new Class({
 			inputname = input.get('name');
 
 		form.addEvent('submit', function(event){
-			event.preventDefault();
+            if (event) {
+			    event.preventDefault();
+            }
 			inputFiles.getFiles().each(function(file){
 				uploadReq.append(inputname , file);
 			});
 			uploadReq.send();
 		});
-
+        self.reset = function() {
+            var files = inputFiles.getFiles();
+            for (var i = 0; i < files.length; i++) {
+                inputFiles.remove(files[i]);
+            }
+        };
 	},
 
 	legacyUpload: function(input){
+
+        var rows = [];
 
 		var row = input.getParent('.formRow');
 			rowClone = row.clone(true, true),
@@ -106,12 +120,20 @@ Form.Upload = new Class({
 
 				if (label) label.set('for', inputID);
 				newRow.inject(row, 'after');
+                rows.push(newRow);
 			};
 
 		new Element('a.addInputRow', {
 			text: '+',
 			events: {click: add}
 		}).inject(input, 'after');
+
+        this.reset = function() {
+            for (var i = 0; i < rows.length; i++) {
+                rows[i].destroy();
+            }
+            rows = [];
+        };
 
 	},
 
