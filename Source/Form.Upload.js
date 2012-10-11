@@ -78,11 +78,11 @@ Form.Upload = new Class({
 			onDragenter: drop.addClass.pass('hover', drop),
 			onDragleave: drop.removeClass.pass('hover', drop),
 			onDrop: function(){
-				drop.removeClass.pass('hover', drop);
+				drop.removeClass('hover');
 				if (self.options.fireAtOnce){
 					self.submit(inputFiles, inputname, uploadReq);
 				}
-			},
+			}.pass(drop),
 			onChange: function(){
 				if (self.options.fireAtOnce){
 					self.submit(inputFiles, inputname, uploadReq);
