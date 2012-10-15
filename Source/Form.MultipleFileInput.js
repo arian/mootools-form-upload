@@ -87,7 +87,7 @@ Form.MultipleFileInput = new Class({
 		new Element('li', {
 			'class': this.options.itemClass
 		}).grab(new Element('span', {
-			text: file.name
+			text: file.name + " (" + this._format_file_size(file.size) + ")"
 		})).grab(new Element('a', {
 			text: 'x',
 			href: '#',
@@ -98,6 +98,24 @@ Form.MultipleFileInput = new Class({
 		})).inject(this.list);
 		this.fireEvent('add', file);
 		return this;
+	},
+
+	_format_file_size: function(size){
+		var suffix = "KB";
+		if (size > 1024 * 1024) {
+			size = size / 1024;
+			suffix = 'MB';
+		}
+		if (size > 1024 * 1024) {
+			size = size / 1024;
+			suffix = 'GB';
+		}
+
+		return (size / 1024).format({
+			decimal: ".",
+			decimals: 1,
+			suffix: " " + suffix
+		});
 	},
 
 	remove: function(file){
