@@ -82,7 +82,7 @@ Form.Upload = new Class({
 				if (self.options.fireAtOnce){
 					self.submit(inputFiles, inputname, uploadReq);
 				}
-			}.pass(drop),
+			},
 			onChange: function(){
 				if (self.options.fireAtOnce){
 					self.submit(inputFiles, inputname, uploadReq);
