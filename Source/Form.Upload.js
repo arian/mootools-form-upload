@@ -63,7 +63,9 @@ Form.Upload = new Class({
 			onRequest: progress.setStyles.pass({display: 'block', width: 0}, progress),
 			onProgress: function(event){
 				var loaded = event.loaded, total = event.total;
-				progress.setStyle('width', parseInt(loaded / total * 100, 10).limit(0, 100) + '%');
+				var loaded_percentage = parseInt(loaded / total * 100, 10).limit(0, 100);
+				progress.setStyle('width', loaded_percentage + '%');
+				progress.set('html', loaded_percentage + '%');
 			},
 			onComplete: function(){
 				progress.setStyle('width', '100%');
