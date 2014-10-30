@@ -53,14 +53,26 @@ Form.MultipleFileInput = new Class({
 		};
 
 		this.dragEvents = drop && (typeof document.body.draggable != 'undefined') ? {
-			dragenter: this.fireEvent.bind(this, 'dragenter'),
-			dragleave: this.fireEvent.bind(this, 'dragleave'),
-			dragend: this.fireEvent.bind(this, 'dragend'),
-			dragover: function(event){
+			dragenter: function(event){
+				event.stopPropagation();
 				event.preventDefault();
-				this.fireEvent('dragover', event);
-			}.bind(this),
+				this.addClass('ondrag');
+			},
+			dragleave: function(event){
+				event.stopPropagation();
+				event.preventDefault();
+				this.removeClass('ondrag');
+			},
+			dragend: function(event){
+				event.stopPropagation();
+				event.preventDefault();
+			},
+			dragover: function(event){
+				event.stopPropagation();
+				event.preventDefault();
+			},
 			drop: function(event){
+				event.stopPropagation();
 				event.preventDefault();
 				var dataTransfer = event.event.dataTransfer;
 				if (dataTransfer) Array.each(dataTransfer.files, this.add, this);
