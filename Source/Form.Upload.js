@@ -26,7 +26,7 @@ Form.Upload = new Class({
 		fireAtOnce: false,
 		onComplete: function(){
 			// reload
-			window.location.href = window.location.href;
+			window.location.reload();
 		}
 	},
 
